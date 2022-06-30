@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import Apidata1 from './pages/api';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </a>
       </header> */}
       Video Game API Social Network
+      <Apidata1 />
     </div>
   );
 }
