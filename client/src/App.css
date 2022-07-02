@@ -37,6 +37,11 @@
   }
 }
 
-.title {
-  margin-bottom: 3%;
+.item-container {
+  margin-top: 3%;
+}
+
+.homeimage {
+  height: 50%;
+  width: 50%;
 }

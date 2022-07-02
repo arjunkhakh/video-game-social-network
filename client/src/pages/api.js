@@ -17,11 +17,12 @@ const [users, setUsers] = useState();
 
   return (
     <div>
+      <h1>Featured Games</h1>
       {users &&
         users.results.map((user) => (
-          <div className="item-container">
+          <div key={user.id} className="item-container">
             Id:{user.id}<div className="title">Title:{user.name}</div>
-            <div> <img alt="the video game" src={user.background_image}></img></div>
+            <div> <img className="homeimage" alt="the video game" src={user.background_image}></img></div>
           </div>
         ))}
     </div>
