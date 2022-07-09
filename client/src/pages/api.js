@@ -19,16 +19,6 @@ const [users, setUsers] = useState();
     getApiData();
   }, []);
 
-  // const MetaReview = async (user) => {
-  //   if (user.metacritic < 0.50) {
-  //     document.getElementById("metra").setAttribute("style", "background-color:red; padding:2px; border: 1px solid black; clear:both; display: inline-block; overflow: hidden;white-space: nowrap; margin:0px")
-  //   } else if (user.metacritic < 0.75) {
-  //     document.getElementById("metra").setAttribute("style", "background-color:yellow; padding:2px; border: 1px solid black; margin:0px; clear:both; display: inline-block; overflow: hidden;white-space: nowrap;")
-  //   } else {
-  //     document.getElementById("metra").setAttribute("style", "background-color:lightgreen; padding:2px; border: 1px solid black; margin:0px; clear:both; display: inline-block; overflow: hidden;white-space: nowrap;")
-  //   }
-  // }
-
   return (
     <div>
       <h1>Featured Games</h1>
