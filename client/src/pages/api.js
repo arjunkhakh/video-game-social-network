@@ -7,13 +7,18 @@ import "bootstrap/dist/css/bootstrap.css";
 const Apidata1 = () => {
     
 const [users, setUsers] = useState();
+// const [details, setDetails] = useState();
 
   // Function to collect data
   const getApiData = async () => {
     const response = await fetch('https://api.rawg.io/api/games?key=4f4b6732407f485db8cb3331c845daf6').then((response) => response.json());
     console.log(response);
     setUsers(response);
-    }
+
+    // const getDetailData = await fetch (`https://api.rawg.io/api/games/${response.results.id}?key=4f4b6732407f485db8cb3331c845daf6`).then((response2) => response2.json());
+    // console.log(getDetailData);
+    // setDetails(getDetailData)
+  }
 
   useEffect(() => {
     getApiData();
@@ -26,19 +31,21 @@ const [users, setUsers] = useState();
           <Row>
           {users &&
          users.results.map((user) => (
-              <Col key={user.id} xs="4">
+              <Col xs="3">
                 <Box>
                 <div className="title">{user.name}</div>
               <div> <img className="homeimage" alt="the video game" src={user.background_image}></img></div>
               <br></br>
-              <div style={{backgroundColor: user.metracritic < 50 ? "red" : "green", border: "1px solid black", color: "black", width:"4vw", height:"3vw", left:"45%", position: "relative"}}> {user.metacritic} </div>
+              <div style={{backgroundColor: user.metracritic < 50 ? "red" : "green", border: "1px solid black", color: "black", width:"4vw", height:"3vw", left:"40%", position: "relative", borderRadius:"100%", fontSize:"155%"}}> {user.metacritic} </div>
               </Box>
               </Col>
             ))}
+            
           </Row>
         </Container>
       </div>
   );
+  
 }
 
 const Box = props => <div className="box">{props.children}</div>;
