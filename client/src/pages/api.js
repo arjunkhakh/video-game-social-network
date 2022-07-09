@@ -40,8 +40,8 @@ const [users, setUsers] = useState();
                 <Box>
                 <div className="title">{user.name}</div>
               <div> <img className="homeimage" alt="the video game" src={user.background_image}></img></div>
-              {/* <MetaReview> <div id="metra">{user.metacritic}</div> </MetaReview> */}
-              
+              <br></br>
+              <div style={{backgroundColor: user.metracritic < 50 ? "red" : "green", border: "1px solid black", color: "black", width:"4vw", height:"3vw", left:"45%", position: "relative"}}> {user.metacritic} </div>
               </Box>
               </Col>
             ))}
