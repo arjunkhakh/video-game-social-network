@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 const Apidata1 = () => {
     
 const [users, setUsers] = useState();
-// const [details, setDetails] = useState();
+const [details, setDetails] = useState();
 
   // Function to collect data
   const getApiData = async () => {
@@ -15,9 +15,27 @@ const [users, setUsers] = useState();
     console.log(response);
     setUsers(response);
 
-    // const getDetailData = await fetch (`https://api.rawg.io/api/games/${response.results.id}?key=4f4b6732407f485db8cb3331c845daf6`).then((response2) => response2.json());
-    // console.log(getDetailData);
-    // setDetails(getDetailData)
+    // for (let index = 0; index < response.results.length; index++) {
+    //   const getDetailData = await fetch (`https://api.rawg.io/api/games/${response.results[index].id}?key=4f4b6732407f485db8cb3331c845daf6`).then((response2) => response2.json());
+    //   console.log(getDetailData);
+    //   setDetails([getDetailData])
+    // }
+
+    const getDetailData = await response.results.map((detail) => {
+      const getGameData = fetch (`https://api.rawg.io/api/games/${detail.id}?key=4f4b6732407f485db8cb3331c845daf6`).then((response2) => response2.json());
+      console.log(getGameData);
+      setDetails([getGameData]);
+    })
+
+    const promise = await Promise.all(getDetailData).then(function(data) {
+      console.log(data); 
+      });
+    
+      return promise.map(
+        ({ data: { description_raw } }) => ({
+          description_raw
+        })
+      );
   }
 
   useEffect(() => {
@@ -33,10 +51,17 @@ const [users, setUsers] = useState();
          users.results.map((user) => (
               <Col xs="3">
                 <Box>
+                  <div key={user.id}>
                 <div className="title">{user.name}</div>
               <div> <img className="homeimage" alt="the video game" src={user.background_image}></img></div>
               <br></br>
               <div style={{backgroundColor: user.metracritic < 50 ? "red" : "green", border: "1px solid black", color: "black", width:"4vw", height:"3vw", left:"40%", position: "relative", borderRadius:"100%", fontSize:"155%"}}> {user.metacritic} </div>
+              {details && details.map((detail) => (
+                <div key={user.id}>
+                  {detail.description_raw}
+                  </div>
+              ))}
+              </div>
               </Box>
               </Col>
             ))}
