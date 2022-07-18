@@ -63,9 +63,14 @@
   color: white;
   box-shadow: 5px 10px #888888;
   width: 100%;
-  height: 100%;
+  height: 130%;
+  border-radius: 10%;
 }
 
 .title {
   font-size: 135%;
+}
+
+.box:hover{
+  border-radius: 0%;
 }

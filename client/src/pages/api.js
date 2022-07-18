@@ -24,19 +24,32 @@ const [details, setDetails] = useState();
     const getDetailData = await response.results.map((detail) => {
       const getGameData = fetch (`https://api.rawg.io/api/games/${detail.id}?key=4f4b6732407f485db8cb3331c845daf6`).then((response2) => response2.json());
       console.log(getGameData);
-      setDetails([getGameData]);
+
+      return getGameData;
     })
 
     const promise = await Promise.all(getDetailData).then(function(data) {
-      console.log(data); 
+      console.log(data);
+      
+      return data;
       });
-    
-      return promise.map(
-        ({ data: { description_raw } }) => ({
-          description_raw
-        })
-      );
-  }
+      console.log(promise)
+      
+      // promise.forEach(element => {
+      //   console.log(element)
+      //   setDetails([element])
+      // });
+
+      // for (let index = 0; index < promise.length; index++) {
+      //   const element = promise[index];
+      //   setDetails([element])
+      // }
+
+      promise.map(function(element) {
+        setDetails([element])
+        return element
+      })
+      }
 
   useEffect(() => {
     getApiData();
